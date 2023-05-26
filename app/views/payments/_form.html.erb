@@ -22,7 +22,7 @@
   <div class="mb-6">
         <%= form.label :payment_method_id, class: label_class %>
         <%= form.select :payment_method_id, options_from_collection_for_select(
-          Payment_method.all, 'id', 'payment_method', selected = payment.payment_method_id), class: label_class %>
+          PaymentMethod.all, 'id', 'payment_method', selected = payment.payment_method_id), class: label_class %>
       </div>
   <div class="mb-6">
         <%= form.label :pay_time, class: label_class %>
