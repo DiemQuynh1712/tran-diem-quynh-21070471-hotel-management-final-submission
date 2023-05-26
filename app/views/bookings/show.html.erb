@@ -1,0 +1,57 @@
+<div class="max-w-3xl mx-auto px-4">
+  <div class="flex items-center justify-between">
+    <h1 class="flex-1 font-bold text-3xl">Booking</h1>
+
+    <div class="flex-wrap lg:flex items-center lg:space-x-3">
+      <%= link_to bookings_path, class: button_class(theme: "transparent") do %>
+      All Bookings
+      <% end %>
+      <%= link_to edit_booking_path(@booking), class: button_class(theme:"primary") do %>
+      Edit
+      <% end %>
+    </div>
+  </div>
+
+  <ul class="text-slate-700">
+      <li>
+        <p class="font-semibold">Booking no:</p>
+        <p><%= @booking.booking_no %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Customer:</p>
+        <p><%= @booking.customer %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Check in date:</p>
+        <p><%= @booking.check_in_date %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Check out date:</p>
+        <p><%= @booking.check_out_date %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Room type:</p>
+        <p><%= @booking.room_type %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Room number:</p>
+        <p><%= @booking.room_number %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Num of nights:</p>
+        <p><%= @booking.num_of_nights %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Num of adults:</p>
+        <p><%= @booking.num_of_adults %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Num of children:</p>
+        <p><%= @booking.num_of_children %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Required services:</p>
+        <p><%= @booking.required_services %></p>
+      </li>
+  </ul>
+</div>

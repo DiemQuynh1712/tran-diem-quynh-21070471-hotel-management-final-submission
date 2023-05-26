@@ -1,0 +1,2 @@
+module RoomClassesHelper
+end

@@ -1,0 +1,62 @@
+<%= form_with(model: booking) do |form| %>
+<% if booking.errors.any? %>
+<div id="error_explanation" class="bg-red-50 p-6 rounded text-red-800">
+  <h2 class="text-lg font-semibold mb-3"><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+  <ul class="list-disc leading-relaxed">
+    <% booking.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+  <div class="mb-6">
+        <%= form.label :booking_no, class: label_class %>
+          <%= form.number_field :booking_no, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :customer_id, class: label_class %>
+          <%= form.text_field :customer_id, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :check_in_date, class: label_class %>
+          <%= form.date_field :check_in_date, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :check_out_date, class: label_class %>
+          <%= form.date_field :check_out_date, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :room_type_id, class: label_class %>
+          <%= form.text_field :room_type_id, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :room_number, class: label_class %>
+          <%= form.number_field :room_number, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :num_of_nights, class: label_class %>
+          <%= form.number_field :num_of_nights, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :num_of_adults, class: label_class %>
+          <%= form.number_field :num_of_adults, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :num_of_children, class: label_class %>
+          <%= form.number_field :num_of_children, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :required_services, class: label_class %>
+          <%= form.text_field :required_services, class: input_class %>
+      </div>
+
+<%= form.submit class: button_class(theme: 'primary') %>
+
+<% if booking.persisted? %>
+<%= link_to "Cancel", booking, class: "text-neutral-700 underline inline-block ml-3" %>
+<% else %>
+<%= link_to "Cancel", bookings_path, class:  "text-neutral-700 underline inline-block ml-3" %>
+<% end %>
+<% end %>

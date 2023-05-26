@@ -1,0 +1,37 @@
+<div class="max-w-3xl mx-auto px-4">
+  <div class="flex items-center justify-between">
+    <h1 class="flex-1 font-bold text-3xl">Roomtype</h1>
+
+    <div class="flex-wrap lg:flex items-center lg:space-x-3">
+      <%= link_to roomtypes_path, class: button_class(theme: "transparent") do %>
+      All Roomtypes
+      <% end %>
+      <%= link_to edit_roomtype_path(@roomtype), class: button_class(theme:"primary") do %>
+      Edit
+      <% end %>
+    </div>
+  </div>
+
+  <ul class="text-slate-700">
+      <li>
+        <p class="font-semibold">Name:</p>
+        <p><%= @roomtype.name %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Room class:</p>
+        <p><%= @roomtype.room_class %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Description:</p>
+        <p><%= @roomtype.description %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Room size:</p>
+        <p><%= @roomtype.room_size %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Price per night:</p>
+        <p><%= @roomtype.price_per_night %></p>
+      </li>
+  </ul>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_26_132436) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_26_135129) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -49,6 +49,49 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_132436) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "bookings", force: :cascade do |t|
+    t.integer "booking_no"
+    t.integer "customer_id", null: false
+    t.date "check_in_date"
+    t.date "check_out_date"
+    t.integer "room_type_id", null: false
+    t.integer "room_number"
+    t.integer "num_of_nights"
+    t.integer "num_of_adults"
+    t.integer "num_of_children"
+    t.string "required_services"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_bookings_on_customer_id"
+    t.index ["room_type_id"], name: "index_bookings_on_room_type_id"
+  end
+
+  create_table "contact_us", force: :cascade do |t|
+    t.string "via"
+    t.string "information"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.date "date_of_birth"
+    t.string "phone_number"
+    t.string "email"
+    t.string "address"
+    t.string "postcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string "name"
+    t.string "position"
+    t.string "contact"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -58,6 +101,50 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_132436) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.string "payment_method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "booking_id", null: false
+    t.float "paid"
+    t.integer "payment_method_id", null: false
+    t.datetime "pay_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_payments_on_booking_id"
+    t.index ["payment_method_id"], name: "index_payments_on_payment_method_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "star"
+    t.string "review"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_reviews_on_customer_id"
+  end
+
+  create_table "room_classes", force: :cascade do |t|
+    t.string "room_class"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "roomtypes", force: :cascade do |t|
+    t.string "name"
+    t.integer "room_class_id", null: false
+    t.string "description"
+    t.integer "room_size"
+    t.float "price_per_night"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_class_id"], name: "index_roomtypes_on_room_class_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,4 +164,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_132436) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookings", "customers"
+  add_foreign_key "bookings", "room_types"
+  add_foreign_key "payments", "bookings"
+  add_foreign_key "payments", "payment_methods"
+  add_foreign_key "reviews", "customers"
+  add_foreign_key "roomtypes", "room_classes"
 end

@@ -1,0 +1,25 @@
+<div class="max-w-3xl mx-auto px-4">
+  <div class="flex items-center justify-between">
+    <h1 class="flex-1 font-bold text-3xl">Contact_u</h1>
+
+    <div class="flex-wrap lg:flex items-center lg:space-x-3">
+      <%= link_to contact_us_path, class: button_class(theme: "transparent") do %>
+      All Contact_us
+      <% end %>
+      <%= link_to edit_contact_u_path(@contact_u), class: button_class(theme:"primary") do %>
+      Edit
+      <% end %>
+    </div>
+  </div>
+
+  <ul class="text-slate-700">
+      <li>
+        <p class="font-semibold">Via:</p>
+        <p><%= @contact_u.via %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Information:</p>
+        <p><%= @contact_u.information %></p>
+      </li>
+  </ul>
+</div>
