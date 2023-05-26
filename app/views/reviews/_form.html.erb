@@ -13,7 +13,8 @@
 
   <div class="mb-6">
         <%= form.label :customer_id, class: label_class %>
-          <%= form.text_field :customer_id, class: input_class %>
+        <%= form.select :customer_id, options_from_collection_for_select(
+          Customer.all, 'id', 'name', selected = review.customer_id), class: label_class %>
       </div>
   <div class="mb-6">
         <%= form.label :star, class: label_class %>

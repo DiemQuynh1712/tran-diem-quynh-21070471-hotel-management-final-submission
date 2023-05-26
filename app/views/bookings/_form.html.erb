@@ -17,7 +17,8 @@
       </div>
   <div class="mb-6">
         <%= form.label :customer_id, class: label_class %>
-          <%= form.text_field :customer_id, class: input_class %>
+        <%= form.select :customer_id, options_from_collection_for_select(
+          Customer.all, 'id', 'name', selected = booking.customer_id), class: label_class %>
       </div>
   <div class="mb-6">
         <%= form.label :check_in_date, class: label_class %>
@@ -29,7 +30,8 @@
       </div>
   <div class="mb-6">
         <%= form.label :room_type_id, class: label_class %>
-          <%= form.text_field :room_type_id, class: input_class %>
+        <%= form.select :room_type_id, options_from_collection_for_select(
+          Roomtype.all, 'id', 'name', selected = booking.room_type_id), class: label_class %>
       </div>
   <div class="mb-6">
         <%= form.label :room_number, class: label_class %>
